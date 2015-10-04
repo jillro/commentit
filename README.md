@@ -1,2 +1,2 @@
 # commentit
-Comm(ent|it) issues
+You can open issues on this repository about https://commentit.io

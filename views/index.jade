@@ -67,6 +67,38 @@ block content
         request is sent to merge the branch. To moderate comments before
         merging, just use <code>$&nbsp;git&nbsp;rebase&nbsp;-i&nbsp;master</code>
         and remove the unwanted comm(ent|it)s.
+    .col-md-12.text-right
+      if (!fullyAuthenticated)
+        a(href="#bottom") <i class="fa fa-chevron-down fa-4x"></i>
+      .row
+        hr
+  #bottom.row
+    .col-md-4.text-left
+      h1 Statistics
+      h3 #{commentCount} comments posted
+      h3 #{userCount} users registered
+      h3
+        = Math.floor(uptime/(1000*3600*24)) + ' days '
+        = Math.floor((uptime%(1000*3600*24))/(1000*3600)) + ' hours '
+        = Math.floor((uptime%(1000*3600))/(1000*60)) + ' minutes running'
+      hr
+      p.lead
+        | Made at:
+        ul
+          li <a href="http://lefuniculaire.fr">Le Funiculaire</a>, Marseille, France
+          li Gentilly, France
+    .col-md-4
+      h1 Features
+      h3 User authentication with Github, Facebook or Twitter.
+      h3 Post- and pre-moderation with git.
+      h3 Profile pictures with Gravatar or Twitter.
+      h3 Full control on comments display.
+      h3 More questions ? See the <a href="/faq">FAQ</a>.
+    .col-md-4.text-left
+      h1 News
+      a.twitter-timeline(href="https://twitter.com/guilro_", data-widget-id="565079167797305345", data-chrome="noheader nofooter noborders") Tweets de @guilro_
+      script.
+        !function(d,s,id) {var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
 
 block javascript_footer
   script.

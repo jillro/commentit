@@ -365,6 +365,7 @@ var realComment = co.wrap(function* (username, page, comment, debug) {
     debug('Made pull request');
   }
 
+  redisClient.incr('commentCount');
   log.info({page: page, comment: comment}, 'posted comment');
 
   return user.settings.master ? 'committed' : 'pending';

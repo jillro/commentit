@@ -34,9 +34,18 @@ router.use(require('./authentication'));
 router.use(require('./comment'));
 router.use(require('./settings'));
 
-router.get('/', function (req, res) {
-  return res.render('index');
-});
+router.get('/', co.wrap(function* (req, res) {
+  var commentCount = yield redisClient.getAsync('commentCount');
+  var timeStamp = yield redisClient.getAsync('uptime');
+  var uptime = new Date((new Date()).getTime() - timeStamp);
+  var userCount = yield users.countUsers();
+
+  return res.render('index', {
+    commentCount: commentCount,
+    userCount: userCount,
+    uptime: uptime
+  });
+}));
 
 router.get('/getting-started', function(req, res) {
   if (!req.isAuthenticated() || 'full' !== req.user.type) {

@@ -1,0 +1,66 @@
+{
+  "name": "commentit",
+  "version": "1.0.0",
+  "description": "Commit comments with github pages !",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "jshint .; NODE_ENV=test mocha --reporter list --recursive;",
+    "build": "bower install && grunt"
+  },
+  "author": "Guillaume Royer <perso@guilro.com>",
+  "license": "proprietary",
+  "engines": {
+    "node": "4.1.1"
+  },
+  "dependencies": {
+    "atob": "^1.1.2",
+    "bluebird": "^2.9.25",
+    "body-parser": "^1.10.1",
+    "btoa": "^1.1.2",
+    "bunyan": "^1.4.0",
+    "co": "^4.0",
+    "connect-mongo": "^0.8",
+    "debug": "^2.1",
+    "express": "^4.10.6",
+    "express-session": "^1.10.2",
+    "github": "^0.2.4",
+    "hat": "^0.0.3",
+    "he": "^0.5.0",
+    "jade": "^1.8.2",
+    "js-yaml": "^3.2.5",
+    "mongodb": "^2.0.15",
+    "morgan": "^1.5.1",
+    "node-uuid": "^1.4.2",
+    "nodemailer": "^1.0",
+    "parse-color": "^1.0.0",
+    "passport": "^0.3.0",
+    "passport-facebook": "^2.0.0",
+    "passport-github": "^1.0.0",
+    "passport-google-oauth": "^0.2.0",
+    "passport-twitter": "^1.0.3",
+    "redis": "^2.0.1",
+    "redis-lock": "^0.1.0",
+    "utf8": "^2.0.0",
+    "validator": "^4.0.6",
+    "yamljs": "^0.2.4"
+  },
+  "devDependencies": {
+    "bower": "^1.5.3",
+    "grunt-browserify": "^4.0.1",
+    "grunt-cli": "^0.1.13",
+    "grunt-contrib-cssmin": "^0.14.0",
+    "grunt-contrib-uglify": "~0.9.2",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-inline": "~0.3.6",
+    "jshint": "^2.5",
+    "mocha": "^2.1"
+  },
+  "jshintConfig": {
+    "globalstrict": "true",
+    "node": true,
+    "indent": 2,
+    "quotmark": "single",
+    "esnext": true
+  }
+}

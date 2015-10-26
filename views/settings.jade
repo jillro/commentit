@@ -1,0 +1,136 @@
+//- Copyright 2015 Guillaume Royer
+//-
+//- This file is part of Comm(ent|it).
+//-
+//- Comm(ent|it) is free software: you can redistribute it and/or modify
+//- it under the terms of the GNU Affero General Public License as published by
+//- the Free Software Foundation, either version 3 of the License, or
+//- (at your option) any later version.
+//-
+//- Comm(ent|it) is distributed in the hope that it will be useful,
+//- but WITHOUT ANY WARRANTY; without even the implied warranty of
+//- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//- GNU Affero General Public License for more details.
+//-
+//- You should have received a copy of the GNU Affero General Public License
+//- along with Comm(ent|it). If not, see <http://www.gnu.org/licenses/>.
+
+extends ./layout.jade
+
+block title
+  | Settings
+
+block content
+  .row
+    .col-md-4.text-justify
+      form#settings-form.well.form(action="#")
+        .page-header
+          h1 General settings
+        p.
+          The following settings affect all comments sent to your websites.
+        hr
+        .input-group
+          .radio
+            span.fa.fa-fw
+            label
+              input(type="radio" name="master" value="false" checked=!user.settings.master)
+              | Create branch and pull requests for comments
+          .radio
+            span.fa.fa-fw
+            label
+              input(type="radio" name="master" value="true" checked=user.settings.master)
+              | Commit directly to master or gh-pages branch
+          span.help-block.
+            Creating branch and pull requests allow you to moderate comments
+            before they are published.
+        hr
+        .input-group
+          .radio
+            span.fa.fa-fw
+            label
+              input(type="radio" name="group" value="false" checked=!user.settings.group)
+              | Generate a new branch for each page
+          .radio
+            span.fa.fa-fw
+            label
+              input(type="radio" name="group" value="true" checked=user.settings.group)
+              | Put all comments in the same pull request
+          span.help-block.
+            You can chose to have a different pull request for each file which is
+            modified. Note that if you choose to send comments to a data file,
+            they will be all commited to the same branch. This setting is ignore
+            if you chose to commit to master branch.
+        hr
+        button.btn.btn-block.btn-primary(type="submit") Save
+    .col-md-8
+      .page-header
+        h1 Page settings
+      p.
+        You can change some settings on a page basis using some javascript
+        variables. Those variable must be present in
+        <a href="/getting-started#embed">the code snippet</a> which
+        load the form on the webpage.
+      p.
+        It is possible to choose between storing the comments in a
+        <a href="http://jekyllrb.com/docs/datafiles/">data file</a>
+        with all your website comments, or in the
+        <a href="http://jekyllrb.com/docs/frontmatter/">front matter</a> of each
+        page. If you choose the first solution, the file must already exist,
+        even if it is empty. This is to prevent anyone from creating files in
+        your repository.
+
+      h3 Required variables
+      strong commentitUsername
+      p.
+        The github username associated with your account on Comm(ent|it. It
+        should be <strong>#{user.username}</strong> in your case.
+      strong commentitRepo
+      p.
+        This must be the github repository on which your website is hosted,
+        including the owner part. It could be for example
+        <strong>#{user.username}/#{user.username}.github.io</strong>, <strong>
+        #{user.username}/someproject</strong> or
+        <strong>someorganization/someproject</strong>.
+
+      h3 Front matter configuration
+      strong commentitPath
+      p.
+        This is the path in the repository of the file you want to commit to.
+        This is the only variable you need if you want to commit comments in the
+        YAML front matter. If it is present, Comm(ent|it) will use the front
+        matter. You should use Jekyll variables and set it with
+        <code>{{ page.path }}</code>.
+      h3 Data file configuration
+      strong commentitId
+      p.
+        This is the key under which the comments for this page will be stored in
+        the database file. You should use Jekyll variables and set it with
+        <code>{{ page.id }}</code>. You will then access the comments in your
+        template with <code>site.data.comments[page.id]</code>.
+      strong commentitDatafile 
+      | (optional, default to <strong>comments</strong>)
+      p.
+        This is the name of the YAML data file you want to use, relative to the
+        <code>_data</code> folder. You should omit the <code>.yml</code>
+        extension. Remember that the data file must already exist even if it is
+        empty.
+
+
+block javascript_footer
+  script.
+    $(function() {
+      $('#settings-form input[type="radio"]').change(function() {
+        $(this).closest('.input-group').find('.fa').removeClass('fa-check');
+        var name = $(this).attr('name');
+        var value = $(this).val();
+        var icon = $(this).closest('.input-group').find(':checked').closest('.radio').find('.fa');
+        icon.addClass('fa-spinner fa-pulse');
+        $.post('settings/' + name + '/' + value, function(data) {
+          icon.removeClass('fa-spinner fa-pulse');
+          icon.addClass('fa-check');
+          setTimeout(function() {
+            icon.removeClass('fa-check');
+          }, 3000);
+        });
+      });
+    });

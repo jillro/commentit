@@ -1,0 +1,80 @@
+/**
+ * Copyright 2015 Guillaume Royer
+ *
+ * This file is part of Comm(ent|it).
+ *
+ * Comm(ent|it) is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Comm(ent|it) is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with Comm(ent|it).  If not, see <http://www.gnu.org/licenses/>. 1
+ */
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+body {
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #333;
+  padding: 1px;
+}
+
+.text-muted {
+  color: #777;
+}
+
+#textarea-block {
+  width: 100%;
+  display: inline-block;
+}
+
+#textarea {
+  color: #333;
+  background-color: #FFF;
+  display: inline-block;
+  box-sizing: border-box;
+  border: 2px solid #888;
+  border-radius: 4px;
+  width: 100%;
+  height: 86px;
+  resize: none;
+}
+
+#picture > img {
+  position: absolute;
+  border: 2px solid #DDD;
+  border-radius: 2px;
+  top: 5px;
+  left: 5px;
+  height: 73px;
+  display: inline-block;
+  background-color: #EEE;
+}
+
+#submit {
+  float: right;
+  display: block;
+  border: 0px;
+  padding: 10px;
+  border-radius: 4px;
+  color: #FFF;
+}
+
+#success {
+  padding-top: 50px;
+  text-align: center;
+}

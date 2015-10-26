@@ -1,0 +1,9 @@
+node_modules
+npm-debug.log
+.DS_Store
+/*.env
+config.js
+static/embed/dist
+static/embed/src/*.bundle.js
+static/css/*.min.css
+static/inc

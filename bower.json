@@ -1,0 +1,9 @@
+{
+  "name": "commentit",
+  "dependencies": {
+    "jquery.localScroll": "^1.3.5",
+    "font-awesome": "^4.4.0",
+    "bootswatch-dist": "3.3.5-darkly",
+    "normalize.css": "~3.0.3"
+  }
+}

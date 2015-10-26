@@ -1,0 +1,144 @@
+//- Copyright 2015 Guillaume Royer
+//-
+//- This file is part of Comm(ent|it).
+//-
+//- Comm(ent|it) is free software: you can redistribute it and/or modify
+//- it under the terms of the GNU Affero General Public License as published by
+//- the Free Software Foundation, either version 3 of the License, or
+//- (at your option) any later version.
+//-
+//- Comm(ent|it) is distributed in the hope that it will be useful,
+//- but WITHOUT ANY WARRANTY; without even the implied warranty of
+//- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//- GNU Affero General Public License for more details.
+//-
+//- You should have received a copy of the GNU Affero General Public License
+//- along with Comm(ent|it). If not, see <http://www.gnu.org/licenses/>.
+
+extends ./layout.jade
+
+block title
+  | Settings
+
+block content
+  .row
+    .col-md-8.col-md-offset-2
+      .page-header
+        h1 Getting started
+      h3 Step 1 : Displaying the form
+      p.
+        Insert this few lines of code in your template. The form will
+        displayed at this place in the page. The javascript will load the form
+        in an independent iframe to prevent XSS and malicious websites posting
+        comments on behalf of users.
+      p.
+        The iframe is 150px height. We analyze colors of text
+        and links on your page. The form in the iframe is styled accordingly.
+      p.
+        Copy-paste theses lines in your template:
+      pre#embed
+        = '<noscript>Please enable JavaScript to view the comment form powered by '
+        = '<a href="https://commentit.io/">Comm(ent|it)</a></noscript>\n'
+        = '<div id="commentit"></div>\n'
+        = '<script type="text/javascript">\n'
+        = '  /** CONFIGURATION VARIABLES **/\n'
+        = '  var commentitUsername = \'' + user.username + '\';\n'
+        = '  var commentitRepo = \'' + user.username +'/' + user.username + '.github.io\';\n'
+        = '  var commentitPath = \'{{ page.path }}\';\n\n'
+        = '  /** DON\'T EDIT FOLLOWING LINES **/\n'
+        = '  (function() {\n'
+        = '      var commentit = document.createElement(\'script\');\n'
+        = '      commentit.type = \'text/javascript\';\n'
+        = '      commentit.async = true;\n'
+        = '      commentit.src = \'https://commentit.io/static/embed/dist/commentit.js\';\n'
+        = '      (document.getElementsByTagName(\'head\')[0] || document.getElementsByTagName(\'body\')[0]).appendChild(commentit);\n'
+        = '  })();\n'
+        = '</script>'
+
+
+      h3 Step 2 : listing comments
+      p.
+        You can store comments in file front matter or in database files.
+        Default is storing in each file front matter. You can change this
+        in the <a href="/settings">settings</a>.
+
+        In any case you will end up with a <code>comments</code> variable.
+        This variable is containing all your post comments, in the form of an
+        array.
+      p.
+        Each element of the array decomposes like this :
+      pre.
+        date: 2015-09-26T15:53:48.377Z
+        author:
+          type: github                # can be github, twitter, facebook or google
+          displayName: Guillaume Ro   # the name given by the service
+          url: 'https://www.facebook.com/app_scoped_user_id/10206218789092308/'
+          picture: 'https://www.gravatar.com/avatar/a0007a5a6e287b9e970c9466a7c80801'
+        content: >-
+          Equitis Romani autem esse filium criminis loco poni ab accusatoribus neque
+          his iudicantibus oportuit neque defendentibus nobis.
+
+          Nam quod de pietate dixistis, est quidem ista nostra existimatio, sed
+          iudicium certe parentis; quid nos opinemur, audietis ex iuratis; quid
+          parentes sentiant, lacrimae matris incredibilisque maeror, squalor
+          patris et haec praesens maestitia, quam cernitis, luctusque declarat.
+      p.
+        You can render the comments the way you want by tweaking in your jekyll
+        template. Here is a minimalistic but nice way to render them with
+        Bootstrap 3:
+      .row
+        .col-md-12
+          .media
+            .media-left
+              img(src="https://www.gravatar.com/avatar/a0007a5a6e287b9e970c9466a7c80801?s=73")
+            .media-body
+              p.text-muted.
+                <a href="https://github.com/guilro">guilro</a> on 2015-09-26 at 16:08
+              p.
+                Paphius quin etiam et Cornelius senatores, ambo venenorum artibus
+                pravis se polluisse confessi, eodem pronuntiante Maximino sunt
+                interfecti. pari sorte etiam procurator monetae extinctus est. Sericum
+                enim et Asbolium supra dictos, quoniam cum hortaretur passim nominare,
+                quos vellent, adiecta religione firmarat, nullum igni vel ferro se
+                puniri iussurum, plumbi validis ictibus interemit. et post hoe flammis
+                Campensem aruspicem dedit, in negotio eius nullo sacramento
+                constrictus.
+          .media
+            .media-left
+              img(src="https://www.gravatar.com/avatar/4e5994a8d717aa6aa134b43a171244dd?s=73")
+            .media-body
+              p.text-muted.
+                <a href="https://twitter.com/guilro_">Guillaume</a> on 2015-09-26 at 16:08
+              p.
+                Paphius quin etiam et Cornelius senatores, ambo venenorum artibus
+                pravis se polluisse confessi, eodem pronuntiante Maximino sunt
+                interfecti. pari sorte etiam procurator monetae extinctus est. Sericum
+                enim et Asbolium supra dictos, quoniam cum hortaretur passim nominare,
+                quos vellent, adiecta religione firmarat, nullum igni vel ferro se
+                puniri iussurum, plumbi validis ictibus interemit. et post hoe flammis
+                Campensem aruspicem dedit, in negotio eius nullo sacramento
+                constrictus.
+      pre
+        = '{%if page.comments %}\n'
+        = '  {% assign sorted_comments = (page.comments | sort: \'date\') %}\n'
+        = '{% endif %}\n'
+        = '{% for c in sorted_comments %}\n'
+        = '  <div class="media">\n'
+        = '    <div class="media-left">\n'
+        = '      <img src="{{ c.author.picture }}" alt="{{ c.author.displayName}}" height="73" width="73">\n'
+        = '    </div>\n'
+        = '    <div class="media-body">\n'
+        = '      <p class="text-muted">\n'
+        = '        <a href="{{ c.author.url }}">{{ c.author.displayName }}</a>\n'
+        = '        on {{ c.date | date_to_string }}\n'
+        = '      </p>\n'
+        = '      <p>{{ c.content | newline_to_br }}</p>\n'
+        = '    </div>\n'
+        = '  </div>\n'
+        = '{% else %}\n'
+        = '  There are no comments on this post.\n'
+        = '{% endfor %}'
+
+      p.
+        You did all this? You can go further and test
+        <a href="/settings">other settings</a>.

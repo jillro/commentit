@@ -1,0 +1,54 @@
+//- Copyright 2015 Guillaume Royer
+//-
+//- This file is part of Comm(ent|it).
+//-
+//- Comm(ent|it) is free software: you can redistribute it and/or modify
+//- it under the terms of the GNU Affero General Public License as published by
+//- the Free Software Foundation, either version 3 of the License, or
+//- (at your option) any later version.
+//-
+//- Comm(ent|it) is distributed in the hope that it will be useful,
+//- but WITHOUT ANY WARRANTY; without even the implied warranty of
+//- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//- GNU Affero General Public License for more details.
+//-
+//- You should have received a copy of the GNU Affero General Public License
+//- along with Comm(ent|it). If not, see <http://www.gnu.org/licenses/>.
+
+extends ./layout.jade
+
+block title
+  | Terms of Service
+
+block content
+  .row
+    .col-md-8.col-md-offset-2
+      .page-header
+        h1 Frequently Asked Questions
+      h3 How does this work ?
+      p.
+        Comm(ent|it) works with <a href="https://pages.github.com">Github
+        Pages</a> and their ability to use Jekyll to generate your static
+        website. With Jekyll, you can define variable in each post or in data
+        files and use them in your template. Comm(ent|it) uses the
+        <a href="https://developer.github.com/v3/">Github API</a> to directly
+        commit on your website repository and store comments. When you first
+        sign-in, you give us write access to your repository. You manage the
+        display of the data we store on it by editing your templates.
+      h3 Can I allow Markdown inside comments ?
+      p.
+        Yes. Just use the appropriate Jekyll filter to display the comment
+        <code>{{&nbsp;comment.content&nbsp;|&nbsp;markdownify&nbsp;}}</code>.
+        Do not forget to put indication for the user to know they can use
+        markdown.
+      h3 How to migrate from other comment systems ?
+      p.
+        If your website currently use Discuss (or any other 3rd party service
+        which store itself the comments), you have to keep it on existing pages
+        not to lose the comments. But you can use Comm(ent|it) on new ones.
+        Just create a second post layout and use it on new posts.
+      h3 Do you allow HTML ?
+      p.
+        For security reason, all html entities are normally escaped. So you
+        cannot accept HTML in your comments. But you can still accept Markdown.
+

@@ -8,6 +8,7 @@
 var prod = ('production' === process.env.NODE_ENV);
 var test = ('test' === process.env.NODE_ENV);
 
+module.exports.secret = 'PleaseChangeThis';
 module.exports.nodemailerOptions = {
   port: 587,
   host: 'smtp.mandrillapp.com',

@@ -62,7 +62,7 @@ if ('production' !== process.env.NODE_ENV) {
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 app.use(session({
-  secret: 'ÇZUGYVCELBK<Qnxcn_açyqeturC',
+  secret: config.secret,
   store: new MongoStore({ db: 'commentit' }),
   resave: false,
   saveUninitialized: false

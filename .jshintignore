@@ -1,2 +1,4 @@
 node_modules
 static/inc
+static/embed/dist
+static/embed/src/*.bundle.js

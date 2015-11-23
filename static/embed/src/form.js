@@ -234,9 +234,9 @@
 
   function sent(state) {
     if ('pending' === state) {
-      successDiv('Your comment has been submitted. It will appear when the site owner approve it.');
+      successDiv('Thank you! Your comment has been submitted. It will appear once the site owner approves it.');
     } else if ('committed' === state) {
-      successDiv('Your comment has been submitted. It may take a while to appear.');
+      successDiv('Thank you! Your comment has been submitted. It may take a while to appear.');
     }
   }
 

@@ -36,6 +36,7 @@ var lock = require('redis-lock')(redisClient);
 var config = require('../config');
 var users = require('./users');
 var log = require('./log');
+var fileEditor = require('./file-editor');
 
 /**
  * Error class for bad comment request.
@@ -47,6 +48,7 @@ function CommentError(message) {
 }
 CommentError.prototype = new Error();
 CommentError.prototype.constructor = CommentError;
+module.exports.CommentError = CommentError;
 
 module.exports.getEmail = co.wrap(function* (token) {
   var github = new GithubApi({
@@ -283,41 +285,11 @@ var realComment = co.wrap(function* (username, page, comment, debug) {
 
   debug('Got file ' + file.name + ' from ' + username + '/' + repo);
 
-  var content = utf8.decode(atob(file.content));
-
+  var content;
   if (!page.id) {
-    var frontMatter = {};
-    var regex = /^(-{3}(?:\n|\r)([\w\W]+?)(?:\n|\r)-{3})?([\w\W]*)*/;
-    var results = regex.exec(content);
-    var frontMatterString = results[1];
-    var yamlOrJson = results[2];
-    debug('Current front matter is\n' + frontMatterString);
-
-    if('' === results[1]) {
-      throw new CommentError('no front matter in the file');
-    }
-
-    if(yamlOrJson.charAt(0) === '{') {
-      frontMatter = JSON.parse(yamlOrJson);
-    } else {
-      frontMatter = jsYaml.safeLoad(yamlOrJson);
-    }
-
-    if (!frontMatter.comments) {
-      frontMatter.comments = [];
-    }
-
-    debug('Current comments are ' + JSON.stringify(frontMatter.comments));
-
-    frontMatter.comments.push(comment);
-
-
-    var newYaml = jsYaml.safeDump(frontMatter).replace(/\n{3,}/, '\n\n\n');
-
-    content = content.replace(/^(-{3}(?:\n|\r))([\w\W]+?)((?:\n|\r)-{3})/, function(match, p1, p2, p3, offset, string) {
-      return (p1 + newYaml + p3);
-    });
+    content = fileEditor.updateFrontMatter(file.content, comment);
   } else {
+    content = utf8.decode(atob(file.content));
     var yaml = jsYaml.safeLoad(content);
 
     if ('object' !== typeof yaml) {
@@ -330,6 +302,7 @@ var realComment = co.wrap(function* (username, page, comment, debug) {
     yaml[page.id].push(comment);
 
     content = jsYaml.safeDump(yaml).replace(/\n{3,}/, '\n\n\n');
+    content = btoa(utf8.encode(content));
   }
 
 
@@ -338,7 +311,7 @@ var realComment = co.wrap(function* (username, page, comment, debug) {
     repo: repo,
     path: path,
     message: 'Comment by ' + authorString(comment.author),
-    content: btoa(content),
+    content: content,
     sha: file.sha,
     branch: branchName,
     committer: {

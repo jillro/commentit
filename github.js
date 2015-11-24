@@ -19,8 +19,6 @@
 
 'use strict';
 
-// FREEZE
-
 var atob = require('atob');
 var BPromise = require('bluebird');
 var btoa = require('btoa');
@@ -40,7 +38,7 @@ var users = require('./users');
 var log = require('./log');
 
 /**
- * Classe d'erreur pour les mauvaise requete de commentaire.
+ * Error class for bad comment request.
  * @class
  */
 function CommentError(message) {
@@ -74,7 +72,6 @@ module.exports.getEmail = co.wrap(function* (token) {
   return res[0].email;
 });
 
-// voir https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Error
 /**
  * @typedef rateLimitResult
  * @property {integer}  limit
@@ -83,7 +80,7 @@ module.exports.getEmail = co.wrap(function* (token) {
  */
 
 /**
- * Récupérer les rate limits globales de l'appli.
+ * Get global app rate limits.
  * @return  Promise<rateLimitResult>
  */
 module.exports.rateLimit = co.wrap(function*() {
@@ -279,7 +276,7 @@ var realComment = co.wrap(function* (username, page, comment, debug) {
     throw err;
   }
 
-  // On modifie le fichier et on le commit.
+  // We modify the file and commit it.
   if ('file' !== file.type) {
     throw new CommentError(file.name + ' is not a file but a ' + file.type);
   }
@@ -369,7 +366,7 @@ var realComment = co.wrap(function* (username, page, comment, debug) {
       '**Author :** ' + authorString(comment.author) + '\n' +
       '**Content :** ' + comment.content + '\n';
 
-    // Si la PR existe déjà, on rajoute un commentaire
+    // if PR exists, we add a comment
     if ('undefined' !== typeof pr[0] && pr[0].head.ref === branchName &&
     pr[0].base.ref === origBranchName) {
       debug('Got pull request');
@@ -381,7 +378,7 @@ var realComment = co.wrap(function* (username, page, comment, debug) {
         body: bodyString
       });
     } else {
-      // Sinon, on la crée
+      // else, we create the PR
       yield github.pullRequests.createAsync({
         user: owner,
         repo: repo,
@@ -439,4 +436,3 @@ var realComment = co.wrap(function* (username, page, comment, debug) {
 function authorString(author) {
   return author.displayName + (author.url ? ' (' + author.url + ')' : '');
 }
-

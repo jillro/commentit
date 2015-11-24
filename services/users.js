@@ -25,11 +25,11 @@ var assert = require('assert');
 var BPromise = require('bluebird');
 BPromise.promisifyAll(require('mongodb'));
 var nodemailer = require('nodemailer');
-var transporter = nodemailer.createTransport(require('./config').nodemailerOptions);
+var transporter = nodemailer.createTransport(require('../config').nodemailerOptions);
 var uuid = require('node-uuid');
 var he = require('he');
 
-var config = require('./config');
+var config = require('../config');
 var log = require('./log');
 
 /**

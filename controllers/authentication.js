@@ -27,15 +27,14 @@ var FacebookStrategy = require('passport-facebook').Strategy;
 var GithubStrategy = require('passport-github').Strategy;
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 var TwitterStrategy = require('passport-twitter').Strategy;
-var GithubApi = BPromise.promisifyAll(require('github'));
 var passport = require('passport');
 var router = express.Router();
 
 var config = require('../config');
-var github = require('../github');
-var users = require('../users');
+var github = require('../services/github');
+var users = require('../services/users');
 var Commenter = users.Commenter;
-var log = require('../log');
+var log = require('../services/log');
 
 
 /* Passport configuration */

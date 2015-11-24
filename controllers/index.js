@@ -27,8 +27,8 @@ var BPromise = require('bluebird');
 var redisClient = BPromise.promisifyAll(require('redis').createClient());
 
 
-var github = require('../github');
-var users = require('../users');
+var github = require('../services/github');
+var users = require('../services/users');
 
 router.use(require('./authentication'));
 router.use(require('./comment'));

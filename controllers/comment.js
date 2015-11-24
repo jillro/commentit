@@ -23,10 +23,11 @@ var co = require('co');
 var express = require('express');
 var router = express.Router();
 var uuid = require('node-uuid');
-var github = require('../github');
-var log = require('../log');
-var Commenter = require('../users').Commenter;
 var he = require('he');
+
+var github = require('../services/github');
+var log = require('../services/log');
+var Commenter = require('../services/users').Commenter;
 
 router.post('/comment/csrf', function(req, res, next) {
   var token = uuid.v4();

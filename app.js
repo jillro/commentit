@@ -40,9 +40,9 @@ var session = require('express-session');
  * Import modules internes.
  */
 var controllersLoader = require('./controllers');
-var github = require('./github');
-var users = require('./users');
-var log = require('./log');
+var github = require('./services/github');
+var users = require('./services/users');
+var log = require('./services/log');
 var config = require('./config');
 
 log.info('new server process');

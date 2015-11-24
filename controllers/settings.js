@@ -24,7 +24,7 @@ var express = require('express');
 var router = express.Router();
 var validator = require('validator');
 
-var users = require('../users');
+var users = require('../services/users');
 
 /*
  * Settings

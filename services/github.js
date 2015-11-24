@@ -33,7 +33,7 @@ var validator = require('validator');
 var redisClient = require('redis').createClient();
 var lock = require('redis-lock')(redisClient);
 
-var config = require('./config');
+var config = require('../config');
 var users = require('./users');
 var log = require('./log');
 

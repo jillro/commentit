@@ -22,7 +22,7 @@
 'use strict';
 
 var assert = require('assert');
-var users = require('../users');
+var users = require('../services/users');
 
 describe('User repository', function() {
   it('should connect to the database in less than 1s', function(done) {

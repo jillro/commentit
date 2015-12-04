@@ -55,7 +55,7 @@ var app = express();
 app.set('views', './views');
 app.set('view engine', 'jade');
 
-app.use('/static/', express.static(__dirname + '/static/', {maxAge: '365d'})); // static files
+app.use('/static/', express.static(__dirname + '/static/', {maxAge: '60000'})); // static files
 if ('production' !== process.env.NODE_ENV) {
   app.use(morgan('dev')); // log
 }

@@ -1,5 +1,7 @@
 # Comm(ent|it)
 
+![dependencies](https://david-dm.org/guilro/commentit.svg)
+
 This repository contains the code of the application hosted at
 [commentit.io](https://commentit.io). Comm(ent|it) uses the Github API and
 Jekyll to help storing visitors comments directly in Github Pages repository.
@@ -41,5 +43,3 @@ the `PORT` environment variable.
 
 The tests mainly address user storage. Feel free to write other tests if you add
 features.
-
-

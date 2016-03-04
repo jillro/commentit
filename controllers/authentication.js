@@ -25,7 +25,6 @@ var BPromise = require('bluebird');
 var express = require('express');
 var FacebookStrategy = require('passport-facebook').Strategy;
 var GithubStrategy = require('passport-github').Strategy;
-var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 var TwitterStrategy = require('passport-twitter').Strategy;
 var passport = require('passport');
 var router = express.Router();

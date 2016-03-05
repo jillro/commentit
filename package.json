@@ -9,7 +9,7 @@
     "build": "bower install && grunt"
   },
   "author": "Guillaume Royer <perso@guilro.com>",
-  "license": "proprietary",
+  "license": "AGPL-3.0",
   "engines": {
     "node": "4.1.1"
   },

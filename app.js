@@ -63,7 +63,7 @@ app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 app.use(session({
   secret: config.secret,
-  store: new MongoStore({ db: 'commentit' }),
+  store: new MongoStore({ url: config.dbUrl }),
   resave: false,
   saveUninitialized: false
 }));

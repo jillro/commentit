@@ -102,7 +102,7 @@
         var pictureImg = document.getElementById('picture').getElementsByTagName('img')[0];
         if (pictureImg) {
           document.getElementById('picture').removeChild(pictureImg);
-          document.getElementById('textarea').style.paddingLeft = '2px';
+          document.getElementById('textarea').style.paddingLeft = '5px';
         }
       } else if (-1 !== ['full', 'facebook', 'github', 'twitter'].indexOf(user.type)) {
         /* if connected */
@@ -113,7 +113,7 @@
         /* picture */
         html = '<img src="' + user.picture + '" height="73" width="73" alt="picure">';
         document.getElementById('picture').innerHTML = html;
-        document.getElementById('textarea').style.paddingLeft = '84px';
+        document.getElementById('textarea').style.paddingLeft = '87px';
         /* logout button */
         document.getElementById('auth-logout').addEventListener('click', function(e) {
           e.preventDefault(e);

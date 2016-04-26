@@ -1117,9 +1117,9 @@
       "resolved": "https://registry.npmjs.org/hat/-/hat-0.0.3.tgz"
     },
     "he": {
-      "version": "0.5.0",
-      "from": "he@>=0.5.0 <0.6.0",
-      "resolved": "https://registry.npmjs.org/he/-/he-0.5.0.tgz"
+      "version": "1.0.0",
+      "from": "he@1.0.0",
+      "resolved": "https://registry.npmjs.org/he/-/he-1.0.0.tgz"
     },
     "hooker": {
       "version": "0.2.3",

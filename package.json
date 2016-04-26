@@ -38,7 +38,7 @@
     "passport-facebook": "^2.0.0",
     "passport-github": "^1.0.0",
     "passport-twitter": "^1.0.3",
-    "redis": "^2.0.1",
+    "redis": "^2.5.3",
     "redis-lock": "^0.1.0",
     "utf8": "^2.0.0",
     "validator": "^5.1.0",

@@ -1,6 +1,6 @@
 {
   "name": "commentit",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Commit comments with github pages !",
   "main": "app.js",
   "scripts": {

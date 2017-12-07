@@ -44,29 +44,41 @@ describe('File editor', function() {
                  'OwohW01lXSh7eyBreWxlZ3JheWNhciB9fS9hc3NldHMvbWUuanBnKQo8YnI+\n' +
                  'Jm5ic3A7Jm5ic3A7Jm5ic3A75LqR5Y2X5aSn55CG5rSx5rW3Cg==';
 
-    var after = 'LS0tCmxheW91dDogcG9zdAp0aXRsZTogJ0hlbGxvIFdvcmxkISDkuJbnlYzl' +
-                'pb0hJwpkZXNjcmlwdGlvbjogTXkgZmlyc3QgcG9zdApkYXRlOiAyMDE1LTA4' +
-                'LTE3VDE5OjE1OjQwLjAwMFoKY2F0ZWdvcmllczogZmlyc3QgcG9zdApjb21t' +
-                'ZW50czoKICAtIGF1dGhvcjoKICAgICAgdHlwZTogZnVsbAogICAgICBkaXNw' +
-                'bGF5TmFtZToga3lsZWdyYXljYXIKICAgICAgdXJsOiAnaHR0cHM6Ly9naXRo' +
-                'dWIuY29tL2t5bGVncmF5Y2FyJwogICAgICBwaWN0dXJlOiAnaHR0cHM6Ly9h' +
-                'dmF0YXJzLmdpdGh1YnVzZXJjb250ZW50LmNvbS91LzE0Mjg3NzA2P3Y9MyZz' +
-                'PTczJwogICAgY29udGVudDogJ1RoaXMgaXMgYSB0ZXN0IGNvbW1lbnQuICcK' +
-                'ICAgIGRhdGU6IDIwMTUtMTEtMjNUMTM6MjQ6NTcuMDM3WgoKLS0tClRoaXMg' +
-                'cGVyc29uYWwgd2Vic2l0ZSBpcyBhIGxpdHRsZSBwcm9qZWN0IHRvIGludHJv' +
-                'ZHVjZSBteXNlbGYgdG8gdGhlIHdvcmxkIG9mIHByb2dyYW1taW5nLCB3aGls' +
-                'ZSBlbmFibGluZyBtZSB0byBibG9nIGFib3V0IG15IHJhbmRvbSBpZGVhcyBh' +
-                'bmQgZXhwZXJpZW5jZXMuIEkgYW0gdG90YWxseSBuZXcgdG8gdGhpcywgYnV0' +
-                'IGhvcGVmdWxseSB0aGlzIGNhbiBidWlsZCBhIGxpdHRsZSBmb3VuZGF0aW9u' +
-                'IGluIHdlYiBkZXZlbG9wbWVudCBmcm9tIHdoaWNoIEkgY2FuIHVzZSB0byBh' +
-                'cHBseSBteSBpbnRlcmVzdHMuIAoKT24gYSBtYWNybyBsZXZlbCBJJ20gaW50' +
-                'ZXJlc3RlZCBpbiBjb250cmlidXRpbmcgdG8gYW4gZW52aXJvbm1lbnRhbGx5' +
-                'IHN1c3RhaW5hYmxlIGZ1dHVyZS4gSSdtIHNwZWNpZmljYWxseSBpbnRlcmVz' +
-                'dGVkIGluIENoaW5hJ3MgZGV2ZWxvcG1lbnQgb2YgYWx0ZXJuYXRpdmUgZW5l' +
-                'cmd5IHN5c3RlbXMuCgpJIGdyYWR1YXRlZCBmcm9tIFVDTEEgaW4gMjAxNCwg' +
-                'YW5kIGFtIG5vdyBpbiBZdW5uYW4sIENoaW5hLiAKCiZuYnNwOyZuYnNwOwoh' +
-                'W01lXSh7eyBreWxlZ3JheWNhciB9fS9hc3NldHMvbWUuanBnKQo8YnI+Jm5i' +
-                'c3A7Jm5ic3A7Jm5ic3A75LqR5Y2X5aSn55CG5rSx5rW3Cg==';
+    var after = 'LS0tCmxheW91dDogcG9zdAp0aXRsZTogSGVsbG8g' +
+                'V29ybGQhIOS4lueVjOWlvSEKZGVzY3JpcHRpb246' +
+                'IE15IGZpcnN0IHBvc3QKZGF0ZTogMjAxNS0wOC0x' +
+                'N1QxOToxNTo0MC4wMDBaCmNhdGVnb3JpZXM6IGZp' +
+                'cnN0IHBvc3QKY29tbWVudHM6CiAgLSBhdXRob3I6' +
+                'CiAgICAgIHR5cGU6IGZ1bGwKICAgICAgZGlzcGxh' +
+                'eU5hbWU6IGt5bGVncmF5Y2FyCiAgICAgIHVybDog' +
+                'J2h0dHBzOi8vZ2l0aHViLmNvbS9reWxlZ3JheWNh' +
+                'cicKICAgICAgcGljdHVyZTogJ2h0dHBzOi8vYXZh' +
+                'dGFycy5naXRodWJ1c2VyY29udGVudC5jb20vdS8x' +
+                'NDI4NzcwNj92PTMmcz03MycKICAgIGNvbnRlbnQ6' +
+                'ICdUaGlzIGlzIGEgdGVzdCBjb21tZW50LiAnCiAg' +
+                'ICBkYXRlOiAyMDE1LTExLTIzVDEzOjI0OjU3LjAz' +
+                'N1oKCi0tLQpUaGlzIHBlcnNvbmFsIHdlYnNpdGUg' +
+                'aXMgYSBsaXR0bGUgcHJvamVjdCB0byBpbnRyb2R1' +
+                'Y2UgbXlzZWxmIHRvIHRoZSB3b3JsZCBvZiBwcm9n' +
+                'cmFtbWluZywgd2hpbGUgZW5hYmxpbmcgbWUgdG8g' +
+                'YmxvZyBhYm91dCBteSByYW5kb20gaWRlYXMgYW5k' +
+                'IGV4cGVyaWVuY2VzLiBJIGFtIHRvdGFsbHkgbmV3' +
+                'IHRvIHRoaXMsIGJ1dCBob3BlZnVsbHkgdGhpcyBj' +
+                'YW4gYnVpbGQgYSBsaXR0bGUgZm91bmRhdGlvbiBp' +
+                'biB3ZWIgZGV2ZWxvcG1lbnQgZnJvbSB3aGljaCBJ' +
+                'IGNhbiB1c2UgdG8gYXBwbHkgbXkgaW50ZXJlc3Rz' +
+                'LiAKCk9uIGEgbWFjcm8gbGV2ZWwgSSdtIGludGVy' +
+                'ZXN0ZWQgaW4gY29udHJpYnV0aW5nIHRvIGFuIGVu' +
+                'dmlyb25tZW50YWxseSBzdXN0YWluYWJsZSBmdXR1' +
+                'cmUuIEknbSBzcGVjaWZpY2FsbHkgaW50ZXJlc3Rl' +
+                'ZCBpbiBDaGluYSdzIGRldmVsb3BtZW50IG9mIGFs' +
+                'dGVybmF0aXZlIGVuZXJneSBzeXN0ZW1zLgoKSSBn' +
+                'cmFkdWF0ZWQgZnJvbSBVQ0xBIGluIDIwMTQsIGFu' +
+                'ZCBhbSBub3cgaW4gWXVubmFuLCBDaGluYS4gCgom' +
+                'bmJzcDsmbmJzcDsKIVtNZV0oe3sga3lsZWdyYXlj' +
+                'YXIgfX0vYXNzZXRzL21lLmpwZykKPGJyPiZuYnNw' +
+                'OyZuYnNwOyZuYnNwO+S6keWNl+Wkp+eQhua0sea1' +
+                'two=';
 
     var comment = {
       author: {
@@ -80,7 +92,7 @@ describe('File editor', function() {
     };
 
     var newContent = fileEditor.updateFrontMatter(before, comment);
-    assert.equal(after, newContent);
+    assert.equal(newContent, after);
 
     return done();
   });

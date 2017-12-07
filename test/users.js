@@ -49,39 +49,35 @@ describe('User repository', function() {
   octocatUser.settings = { master: false, group: false };
 
   describe('#setUser', function() {
-    it('should save octocat', function(done) {
+    it('should save octocat', function() {
       return users.setUser(octocat).then(function(user) {
         assert.deepEqual(user, octocatUser);
-        return done();
-      }).catch(done);
+      });
     });
   });
 
   describe('#getUser', function() {
-    it('should get octocat', function(done) {
+    it('should get octocat', function() {
       return users.getUser(1).then(function(user) {
         assert.deepEqual(user, octocatUser);
-        return done();
-      }).catch(done);
+      });
     });
 
-    it('should get nothing else', function(done) {
+    it('should get nothing else', function() {
       return users.getUser(2).then(function(user) {
         assert.equal('undefined', typeof user);
-        return done();
-      }).catch(done);
+      });
     });
   });
 
   describe('#list', function() {
-    it('should give a list with octocat inside', function(done) {
+    it('should give a list with octocat inside', function() {
       return users.list().then(function(list) {
         assert.deepEqual(
           octocatUser,
           list.filter(function(user) { return (1 === user.id); })[0]
         );
-        return done();
-      }).catch(done);
+      });
     });
   });
 });

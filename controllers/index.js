@@ -108,7 +108,7 @@ router.get('/invitation/:code', function(req, res, next) {
  * Administration route
  */
 router.get('/admin', function(req, res, next) {
-  if (!req.isAuthenticated() || 'guilro' !== req.user.username) {
+  if (!req.isAuthenticated() || 'jillro' !== req.user.username) {
     return res.sendStatus(404);
   }
 
